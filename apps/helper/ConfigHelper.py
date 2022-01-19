@@ -26,7 +26,7 @@ def encoder_app(text, salt):
 
 class Config:
     __dir_name__ = os.path.dirname(__file__)
-    __file_path__ = '../../config/config.yml'
+    __file_path__ = '../../config/config.yaml'
     __file_config__ = os.path.abspath(os.path.join(__dir_name__, __file_path__))
 
     __config_yaml__ = None
@@ -35,8 +35,11 @@ class Config:
     @classmethod
     def load(cls):
         config = open(cls.__file_config__, "r")
+        
+
+
         cls.__config_yaml__ = yaml.load(config, Loader=Loader)
-        Log.info("Load config/config.yml")
+        Log.info("Load config/config.yaml")
 
         cls.PARAMS = ConfigApps(
             ENVIRONMENT=cls.__config_yaml__['env'],
@@ -71,6 +74,5 @@ class Config:
         200: {"content": {"application/json": {
             "example": {"title": "API using FastAPI", "version": "1.0.0", "description": "API using FastAPI"}}}}
     }
-
 
 Config.load()
